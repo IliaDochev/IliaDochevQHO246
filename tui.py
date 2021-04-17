@@ -8,8 +8,8 @@ def welcome():
 
     :return: Does not return anything.
     """
-    # TODO: Your code here
-
+    welcomemsg = "Solar Record Management System"
+    print ("-" * len(welcomemsg), welcomemsg, "-" * len(welcomemsg))
 
 def menu():
     """
@@ -26,7 +26,32 @@ def menu():
 
     :return: None if invalid selection otherwise an integer corresponding to a valid selection
     """
-    # TODO: Your code here
+    print("Main Menu")
+
+    print("\nLoad Data\nProcess Data\nVisualise Data\nSave Data\nExit")
+    usr = input()
+
+    if(usr == "Load Data"):
+        i=1
+
+    elif(usr == "Process Data"):
+        i=2
+
+    elif(usr == "Visualise Data"):
+        i=3
+
+    elif(usr == "Save Data"):
+        i=4
+
+    elif(usr == "Exit"):
+        i=5
+
+    else:
+        print("Invalid Choice!")
+        return 0
+
+    return i
+
 
 
 def started(operation):
@@ -34,14 +59,13 @@ def started(operation):
     Task 3: Display a message to indicate that an operation has started.
 
     The function should display a message in the following format:
-    '{operation} has started.'
+    '{operation} has started.'Solar Record Management System
     Where {operation} is the value of the parameter passed to this function
 
     :param operation: A string indicating the operation being started
     :return: Does not return anything
     """
-    # TODO: Your code here
-
+    print("{} has started.", operation)
 
 def completed(operation):
     """
@@ -54,7 +78,7 @@ def completed(operation):
     :param operation: A string indicating the operation being completed
     :return: Does not return anything
     """
-    # TODO: Your code here
+    print("{} has completed.", operation)
 
 
 def error(error_msg):
@@ -68,7 +92,7 @@ def error(error_msg):
     :param error_msg: A string containing an error message
     :return: Does not return anything
     """
-    # TODO: Your code here
+    print("Error! {}.", error_msg)
 
 
 def source_data_path():
@@ -82,7 +106,12 @@ def source_data_path():
 
     :return: None if the file path does not end in 'csv' otherwise return the file path entered by the user
     """
-    # TODO: Your code here
+    path = input("Please enter a file path for the data file:\n")
+
+    if path.endswith('.csv'):
+        return path
+    else:
+        return 0
 
 
 def process_type():
@@ -101,7 +130,26 @@ def process_type():
 
     :return: None if an invalid selection made otherwise an integer corresponding to a valid option
     """
-    # TODO: Your code here
+    print("How would you like for the file to be processed?")
+
+    usr = input("\nRetrieve entity\nRetrieve entity details\nCategorise entities by type\nCategorise entities by gravity\nSummarise entitites by orbit\n\n")
+
+    if(usr == "Retrieve entity"):
+        i=1
+    elif(usr == "Retrieve entity details"):
+        i=2
+    elif(usr == "Categorise entities by type"):
+        i=3
+    elif(usr == "Categorise entitites by gravity"):
+        i=4
+    elif(usr == "Summarise entities by orbit"):
+        i=5
+    else:
+        print("Invalid input")
+        return 0
+
+    return i
+
 
 
 def entity_name():
@@ -113,7 +161,8 @@ def entity_name():
 
     :return: the name of an entity
     """
-    # TODO: Your code here
+    entity = input("Please enter the name of an entity:\n")
+    return entity
 
 
 def entity_details():
@@ -127,10 +176,20 @@ def entity_details():
 
     :return: A list containing the name of an entity and a list of column indexes
     """
-    # TODO: Your code here
+    entity_n = input("Please enter the name of an entity:\n")
+    entity_list = input("Please enter a list of integer column indexes: ")
+
+    list = entity_list.split(",")
+    print("list: ", list)
+
+    compl_l = []
+    for i in list:
+        compl_l.append(int(i))
+
+    return entity_n, compl_l
 
 
-def list_entity(entity, cols=[]):
+def list_entity(entity, cols):
     """
     Task 10: Display an entity. Only the data for the specified column indexes will be displayed.
     If no column indexes have been specified, then all the data for the entity will be displayed.
@@ -147,10 +206,19 @@ def list_entity(entity, cols=[]):
     :param cols: A list of integer values that represent column indexes
     :return: does not return anything
     """
-    # TODO: Your code here
+
+    if len(cols) == 0:
+        for z in entity:
+            print(z, end=", ")
+
+    else:
+        for i in cols:
+            print(entity[i])
+
+    return 0
 
 
-def list_entities():
+def list_entities(entities, cols):
     """
     Task 11: Display each entity in entities. Only the data for the specified column indexes will be displayed.
     If no column indexes have been specified, then all the data for an entity will be displayed.
@@ -171,10 +239,22 @@ def list_entities():
     :param cols: A list of integer values that represent column indexes
     :return: Does not return anything
     """
-    # TODO: Your code here
 
 
-def list_categories():
+    for list in entities:
+        if len(cols) == 0:
+            for j in list:
+                print(j, end=", ")
+            print("\n")
+
+        else:
+            for i in cols:
+                print(list[i], end=", ")
+        return 0
+
+
+
+def list_categories(categories):
     """
     Task 12: Display the contents of the dictionary categories.
 
@@ -186,7 +266,8 @@ def list_categories():
     :param categories: A dictionary containing category names and a list of entities that are part of that category
     :return: Does not return anything
     """
-    # TODO: Your code here
+    for key, value in categories.items():
+        print(key, ' : ', value)
 
 
 def gravity_range():
@@ -199,7 +280,17 @@ def gravity_range():
 
     :return: a tuple with the lower and upper limits
     """
-    # TODO: Your code here
+    list = []
+    upper_limit = input("Please enter the upper limit for gravity: ")
+    list.append(upper_limit)
+
+    lower_limit = input("Please enter the lower limit for gravity: ")
+    list.append(lower_limit)
+
+    tupl = tuple(list)
+    return tupl
+
+
 
 
 def orbits():
@@ -213,7 +304,14 @@ def orbits():
 
     :return: a list of entity names
     """
-    # TODO: Your code here
+    n = int(input("Please enter the amount of entities that you wish to input: "))
+    list = []
+
+    for i in range(0, n):
+        data = input(f"Please enter entity number {i}: ")
+        list.append(data)
+
+    return list
 
 
 def visualise():
@@ -231,7 +329,18 @@ def visualise():
 
     :return: None if an invalid selection is made otherwise an integer corresponding to a valid option
     """
-    # TODO: Your code here
+    usr_choice = int(input("Please chose how the data should be visualised:\n\n"
+                           "1 - Entities by type\n"
+                           "2 - Entities by gravity\n"
+                           "3 - Summary of orbits\n"
+                           "4 - Animate gravities\n"
+                           ""
+                           "\nPlease enter a number corresponding to your choice: "))
+    if usr_choice == 1 or usr_choice == 2 or usr_choice == 3 or usr_choice == 4:
+        return usr_choice
+    else:
+        print("Invalid choice!")
+        return 0
 
 
 def save():
@@ -248,4 +357,11 @@ def save():
 
     :return: None if an invalid selection is made otherwise an integer corresponding to a valid option
     """
-    # TODO: Your code here
+    usr = int(input(
+        "Please chose an option on how the data should be stored: \n1 - Export as JSON\nPlease enter a number corresponding to your desired choice: "))
+    if usr == 1:
+        return usr
+
+    else:
+        print("Invalid choice!")
+        return 0
