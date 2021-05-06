@@ -28,8 +28,8 @@ def menu():
     """
     print("Main Menu")
 
-    print("\nLoad Data\nProcess Data\nVisualise Data\nSave Data\nExit")
-    usr = input()
+    usr = input("\nLoad Data\nProcess Data\nVisualise Data\nSave Data\nExit\n\nPlease enter your choice as displayed: ")
+
 
     if(usr == "Load Data"):
         i=1
@@ -44,11 +44,11 @@ def menu():
         i=4
 
     elif(usr == "Exit"):
-        i=5
+        return
 
     else:
         print("Invalid Choice!")
-        return 0
+        return
 
     return i
 
@@ -65,7 +65,7 @@ def started(operation):
     :param operation: A string indicating the operation being started
     :return: Does not return anything
     """
-    print("{} has started.", operation)
+    print(f"{operation} has started.")
 
 def completed(operation):
     """
@@ -146,7 +146,7 @@ def process_type():
         i=5
     else:
         print("Invalid input")
-        return 0
+        return
 
     return i
 
@@ -250,7 +250,7 @@ def list_entities(entities, cols):
         else:
             for i in cols:
                 print(list[i], end=", ")
-        return 0
+        return
 
 
 
@@ -340,7 +340,7 @@ def visualise():
         return usr_choice
     else:
         print("Invalid choice!")
-        return 0
+        return
 
 
 def save():
