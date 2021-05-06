@@ -48,7 +48,7 @@ def menu():
 
     else:
         print("Invalid Choice!")
-        return
+        return None
 
     return i
 
@@ -111,7 +111,7 @@ def source_data_path():
     if path.endswith('.csv'):
         return path
     else:
-        return 0
+        return None
 
 
 def process_type():
@@ -215,7 +215,7 @@ def list_entity(entity, cols):
         for i in cols:
             print(entity[i])
 
-    return 0
+    return None
 
 
 def list_entities(entities, cols):
@@ -233,7 +233,7 @@ def list_entities(entities, cols):
     The function should iterate through each entity in entities and display the entity.
     An entity is a list of values e.g. ['Earth', TRUE, 9.8]
     Only the columns whose indexes are included in cols should be displayed for each entity.
-    If cols is an empty list then all values for the entity should be displayed.
+    If cols is an empty list then all values for the ›‹entity should be displayed.
 
     :param entities: A list of data values related to an entity
     :param cols: A list of integer values that represent column indexes
@@ -250,7 +250,7 @@ def list_entities(entities, cols):
         else:
             for i in cols:
                 print(list[i], end=", ")
-        return
+        return None
 
 
 
@@ -340,7 +340,7 @@ def visualise():
         return usr_choice
     else:
         print("Invalid choice!")
-        return
+        return None
 
 
 def save():
@@ -364,4 +364,4 @@ def save():
 
     else:
         print("Invalid choice!")
-        return 0
+        return None
