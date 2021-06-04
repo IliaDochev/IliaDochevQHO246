@@ -44,7 +44,7 @@ def menu():
         i=4
 
     elif(usr == "Exit"):
-        return
+        return 0
 
     else:
         print("Invalid Choice!")
@@ -78,7 +78,7 @@ def completed(operation):
     :param operation: A string indicating the operation being completed
     :return: Does not return anything
     """
-    print("{} has completed.", operation)
+    print(f"{operation} has completed.")
 
 
 def error(error_msg):
@@ -92,7 +92,7 @@ def error(error_msg):
     :param error_msg: A string containing an error message
     :return: Does not return anything
     """
-    print("Error! {}.", error_msg)
+    print(f"Error! {error_msg}.")
 
 
 def source_data_path():
@@ -106,12 +106,12 @@ def source_data_path():
 
     :return: None if the file path does not end in 'csv' otherwise return the file path entered by the user
     """
+
     path = input("Please enter a file path for the data file:\n")
 
-    if path.endswith('.csv'):
+    if path.endswith(".csv"):
         return path
-    else:
-        return None
+    return None
 
 
 def process_type():
@@ -146,7 +146,7 @@ def process_type():
         i=5
     else:
         print("Invalid input")
-        return
+        return None
 
     return i
 
@@ -189,7 +189,7 @@ def entity_details():
     return entity_n, compl_l
 
 
-def list_entity(entity, cols):
+def list_entity(entity, cols = None):
     """
     Task 10: Display an entity. Only the data for the specified column indexes will be displayed.
     If no column indexes have been specified, then all the data for the entity will be displayed.
@@ -207,13 +207,17 @@ def list_entity(entity, cols):
     :return: does not return anything
     """
 
+    if cols is None:
+        cols = []
     if len(cols) == 0:
-        for z in entity:
-            print(z, end=", ")
-
+        print(entity)
     else:
-        for i in cols:
-            print(entity[i])
+        print("[", end="")
+        for i in range(len(cols)):
+            if i == len(cols) - 1:
+                print(f"{entity[cols[i]]}", end="")
+            print(f"{entity[cols[i]]}", end=",")
+        print("]")
 
     return None
 
@@ -289,6 +293,7 @@ def gravity_range():
 
     tupl = tuple(list)
     return tupl
+
 
 
 
