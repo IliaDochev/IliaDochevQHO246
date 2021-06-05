@@ -61,28 +61,7 @@ def orbits(summary):
     :return: Does not return anything
     """
 
-    num_of_keys = len(summary)
-    keys = summary.keys()
-    rows = num_of_keys // 3
-    cols = 3
-    fig, axs = plt.subplots(rows, cols)
-    count = 0
-    for i in range(rows):
-        for j in range(cols):
-            if count >= len(summary):
-                break
-            labels = ["small", "large"]
-            data = []
-            for label in labels:
-                data += [len(summary[keys[count]][label])]
-            axs[i, j].bar(labels, data)
-            axs[i, j].set_title(summary[f"{keys[count]}"])
-            count += 1
-    for ax in axs.flat:
-        ax.set(xlabel='> 100', ylabel="Satellites")
-
-    for ax in axs.flat:
-        ax.label_outer()
+    # Your Code Here
 
 
 def gravity_animation(categories):

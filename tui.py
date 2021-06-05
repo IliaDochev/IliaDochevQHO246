@@ -132,7 +132,7 @@ def process_type():
     """
     print("How would you like for the file to be processed?")
 
-    usr = input("\nRetrieve entity\nRetrieve entity details\nCategorise entities by type\nCategorise entities by gravity\nSummarise entitites by orbit\n\n")
+    usr = input("\nRetrieve entity\nRetrieve entity details\nCategorise entities by type\nCategorise entities by gravity\nSummarise entitites by orbit\n\nPlease enter your choice as listed: ")
 
     if(usr == "Retrieve entity"):
         i=1
