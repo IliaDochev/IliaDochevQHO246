@@ -2,12 +2,7 @@
 import tui
 import csv
 import visual
-import pandas as pd
 
-
-# Task 18: Create an empty list named 'records'.
-# This will be used to store the date read from the source data file.
-records = []
 dict_planets = {"Planets": [], "Non Planets": []}
 planets_gravity = {"Low Gravity": [], "Medium Gravity": [], "High Gravity": []}
 orbits = {}
@@ -79,7 +74,7 @@ def sum_by_orbit():
 
 
 def cat_by_gravity():
-    global gravity
+    global planets_gravity
     global records
 
     tui.started("Categorizing entities by gravity")
@@ -92,16 +87,22 @@ def cat_by_gravity():
 
         z = i['gravity']
         if z > upper_limit:
-            gravity['High'] += [i['gravity']]
+            planets_gravity['High'] += [i['gravity']]
 
         elif z < lower_limit:
-            gravity['Low'] += [i['gravity']]
+            planets_gravity['Low'] += [i['gravity']]
 
         else:
-            gravity['Medium'] += [i['gravity']]
+            planets_gravity['Medium'] += [i['gravity']]
     tui.completed("Categorizing entities by gravity")
 
     return gravity
+
+
+# Task 18: Create an empty list named 'records'.
+# This will be used to store the date read from the source data file.
+records = []
+
 
 def run():
 
@@ -133,7 +134,6 @@ def run():
             global records
             tui.started("Load Data")
             path = tui.source_data_path()
-            print(path)
             if path is None:
                 tui.error("No file selected")
                 continue
@@ -310,7 +310,7 @@ def run():
             elif visual_opts == 4:
                 tui.started("Animate planet gravities")
                 cat_by_gravity()
-                visual.gravity_animation(gravity)
+                visual.gravity_animation(planets_gravity)
                 tui.completed("Animate planet gravities")
             tui.completed("Data Visualisation")
 
