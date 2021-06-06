@@ -46,11 +46,11 @@ def categorize_entity_by_type():
     global records
     tui.started("Categorise entity by type")
     planets = {"Planets": [], "Non-planets": []}
-    for e in records:
-        if e['isPlanet'] == 'TRUE':
-            planets['Planets'] += [e]
+    for i in records:
+        if i['isPlanet'] == 'TRUE':
+            planets['Planets'] += [i]
         else:
-            planets['Non-planets'] += [e]
+            planets['Non-planets'] += [i]
     tui.completed("Categorise entity by type")
 
 
